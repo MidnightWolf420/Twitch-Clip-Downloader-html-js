@@ -71,9 +71,8 @@
             console.log(clipURL);
             clipID = clipURL.split('/').filter(e => Boolean(e))[clipURL.split('/').filter(e => Boolean(e)).length - 1];
             (async() => {
-                const html = (await (await fetch(clipURL, { mode: 'no-cors' })).text()); // html as text
-                const doc = new DOMParser().parseFromString(html, 'text/html');
-                console.log(doc.body)
+                const html = (await fetch(clipURL, { mode: 'no-cors' })); // html as text
+                console.log(html)
             })()
             console.log(fetchhtml(clipURL));
             var source = document.querySelector('#clip > source');
