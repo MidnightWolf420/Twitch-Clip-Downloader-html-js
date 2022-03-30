@@ -35,7 +35,7 @@
             xmlHttpReq.setRequestHeader('Access-Control-Allow-Origin', '*')
             xmlHttpReq.withCredentials = true;
             xmlHttpReq.setRequestHeader("Content-Type", "text/html");
-            xmlHttpReq.send(null);
+            xmlHttpReq.send("");
             return xmlHttpReq.response; 
         }
         function fetchhtml(url){
@@ -81,6 +81,11 @@
             var clipURL = query['clip'] || query['url'];
             console.log(clipURL);
             clipID = clipURL.split('/').filter(e => Boolean(e))[clipURL.split('/').filter(e => Boolean(e)).length - 1];
+            (async() => {
+                const html = (await (await fetch(url)).text()); // html as text
+                const doc = new DOMParser().parseFromString(html, 'text/html');
+                console.log(doc.body)
+            })()
             console.log(fetchhtml(clipURL));
             console.log(httpGet(clipURL));
             var source = document.querySelector('#clip > source');
