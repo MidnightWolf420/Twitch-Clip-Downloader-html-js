@@ -32,6 +32,7 @@
             xmlHttpReq = new XMLHttpRequest();
             xmlHttpReq.onreadystatechange = function () { /* .. */ };
             xmlHttpReq.open("get", theUrl);
+            xmlHttpReq.setRequestHeader('Access-Control-Allow-Origin', '*')
             xmlHttpReq.withCredentials = true;
             xmlHttpReq.setRequestHeader("Content-Type", "text/html");
             xmlHttpReq.send(null);
