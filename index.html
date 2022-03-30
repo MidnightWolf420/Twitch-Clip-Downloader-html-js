@@ -29,6 +29,7 @@
     <script type="text/javascript">
         function fetchhtml(url){
             fetch(url, {
+                mode: 'no-cors',
                 method: "get"
             })
             .then(function(response) {
@@ -70,7 +71,7 @@
             console.log(clipURL);
             clipID = clipURL.split('/').filter(e => Boolean(e))[clipURL.split('/').filter(e => Boolean(e)).length - 1];
             (async() => {
-                const html = (await (await fetch(clipURL)).text()); // html as text
+                const html = (await (await fetch(clipURL, { mode: 'no-cors' })).text()); // html as text
                 const doc = new DOMParser().parseFromString(html, 'text/html');
                 console.log(doc.body)
             })()
